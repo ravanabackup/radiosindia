@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Line from Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Enter Data Below</h2>
+    <textarea id="dataInput" placeholder="Paste your data here..."></textarea>
+    <button onclick="filterLine()">Go</button>
+
+    <div class="result" id="result">
+        <!-- Filtered line will appear here -->
+    </div>
+
+    <script>
+        function filterLine() {
+            const data = document.getElementById('dataInput').value;
+            const lines = data.split('\n');
+            let result = '';
+
+            for (let line of lines) {
+                if (line.includes('autoplay:"1"')) {
+                    result = line.trim();
+                    break;
+                }
+            }
+
+            document.getElementById('result').textContent = result || 'No matching line found.';
+        }
+    </script>
+
+</body>
+</html>
